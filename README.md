@@ -1,1 +1,2 @@
-https://dezyre.gumlet.io/images/blog/churn-models/Customer_Churn_Prediction_Models_in_Machine_Learning.png?w=940&dpr=1.3
+https://github.com/user-attachments/assets/689cd498-8fbc-4b3b-9411-3fae5a77ee51
+
