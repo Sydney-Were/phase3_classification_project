@@ -16,10 +16,10 @@ overal market share.
 -  Come up wuth recommendations to solve this kind of problem
 
 # EDA
-![alt text](image-1.png)
+![alt text](https://github.com/user-attachments/assets/b38f8719-6bfc-44c1-a116-267c843f964c)
 Some features like international plan, customer service calls, and day charge show clear separation between churners and non-churners. These are likely to be strong predictors and should be included in the model. Features showing weak or no patterns (like night minutes or account length) may have lower predictive power.
 
-![alt text](image-3.png)
+![alt text](https://github.com/user-attachments/assets/64033c56-684d-4920-9145-5e7d6a0a6ce6)
 ## Correlation Heatmap
 Shows linear relationships between numerical features.
 Helps identify: Features positively/negatively correlated with churn, Multicollinearity (features strongly correlated with each other), Useful for detecting redundancy
@@ -49,7 +49,7 @@ Random forest is the better classification model basing on the precision, f1_sco
 
 
 
-![alt text](image.png)
+![alt text](https://github.com/user-attachments/assets/38a9a2b2-6ec3-4bdc-9372-28db9de16890)
 
 # Model comparison ( Logistic and Random Forest)
 
