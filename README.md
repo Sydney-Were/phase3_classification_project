@@ -4,7 +4,6 @@
 Most telecommmunication companies tend to be affected by churn. High churn which basically means many customers dont stick around very long tends to have affect these companies. Customer churn has several negative effects on telecom companies. These include reduced revenue, increased customer acquisition costs, and potential damage to brand reputation. Additionally, high churn rates can lead to a decrease in overall profitability and market share.
 
 
-
 # Business understanding 
 Syria Tel Company tends to face this problems and it tends to reduce the amount of revenue lost due to churn.The aim is to predict patterns that tend to 
 influence the customer behaviour so that they can handle churn and be able to able to build the brand reputation and increase profits being generated and 
@@ -16,53 +15,21 @@ overal market share.
 -  build a classifier to predict customer behaviour
 -  Come up wuth recommendations to solve this kind of problem
 
+# EDA
+![alt text](image-1.png)
+Some features like international plan, customer service calls, and day charge show clear separation between churners and non-churners. These are likely to be strong predictors and should be included in the model. Features showing weak or no patterns (like night minutes or account length) may have lower predictive power.
+
+![alt text](image-3.png)
+## Correlation Heatmap
+Shows linear relationships between numerical features.
+Helps identify: Features positively/negatively correlated with churn, Multicollinearity (features strongly correlated with each other), Useful for detecting redundancy
+### Mutual Information (MI) Plot 
+Measures non-linear associations between features and churn. Higher MI = more predictive power. Works well with categorical features (like international plan).Helps rank features by importance for churn prediction. The goal is to Identify which features are useful for predicting churn. Exclude irrelevant or redundant features.
+
 # Modeling 
-To check on model performance i will do a logistic regression as the baseline model
+To check on model performance i will do a logistic regression as the baseline mode
 
-To check on model performance i will do a logistic regression as the baseline model
-X = df.drop(columns=['churn'])  # Drop the target column to create the feature matrix
-y = df['churn']                 # Set the target variable
-#train-test split
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=42)
-scaler = StandardScaler()
-
-
-# Step 3: Automatically identify numerical columns to scale (excluding object/bool types)
-numerical_cols = X.select_dtypes(include=['int64', 'float64']).columns.tolist()
-
-# Step 4: Initialize the scaler
-scaler = StandardScaler()
-
-# Step 5: Fit the scaler on the training data
-X_train_scaled = X_train.copy()
-X_train_scaled[numerical_cols] = scaler.fit_transform(X_train[numerical_cols])
-
-# Step 6: Apply the same transformation to the test data
-X_test_scaled = X_test.copy()
-X_test_scaled[numerical_cols] = scaler.transform(X_test[numerical_cols])
-#checking of imbalance 
-class_distribution = df.iloc[:,-1].value_counts()
-class_distribution
-# Logistic regression
-# Baseline Logistic Regression 
-model = LogisticRegression(solver='liblinear', max_iter=1000, class_weight='balanced', random_state=42)
-model.fit(X_train_scaled, y_train)
-
-# Predictions
-y_pred = model.predict(X_test_scaled)
-y_proba = model.predict_proba(X_test_scaled)[:, 1]
-
-# Confusion matrix
-confmat = confusion_matrix(y_test, y_pred)
-display = ConfusionMatrixDisplay(confusion_matrix=confmat, display_labels=model.classes_)
-display.plot(cmap='Blues')
-plt.title("Confusion Matrix - Baseline Logistic Regression")
-plt.show()
-
-# Evaluation
-print(classification_report(y_test, y_pred))
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("ROC AUC Score:", roc_auc_score(y_test, y_proba))
+# Logistic Regression Performance Evaluation
 - Overall Accuracy: 75% — Not bad, but doesn't say much due to imbalance.
 
 - ROC AUC Score: 0.81 — Solid, indicating the model separates classes well overall.
@@ -70,35 +37,8 @@ print("ROC AUC Score:", roc_auc_score(y_test, y_proba))
 - Churn Precision is low (0.35) — Meaning: of all the customers predicted to churn, only 35% actually do.
 
 - Churn Recall is decent (0.75) — You're catching 77% of actual churners — which is typically more important in churn prediction.
-# Dession trees
-# Initialize the Decision Tree model with class_weight for imbalance handling
-dt_model = DecisionTreeClassifier(random_state=42, class_weight='balanced')
 
-# Train the model
-dt_model.fit(X_train_scaled, y_train)
-
-# Make predictions
-y_pred_dt = dt_model.predict(X_test_scaled)
-y_proba_dt = dt_model.predict_proba(X_test_scaled)[:, 1]
-
-# Evaluate performance
-print("Classification Report (Decision Tree):\n", classification_report(y_test, y_pred_dt))
-print("Accuracy (Decision Tree):", accuracy_score(y_test, y_pred_dt))
-print("ROC AUC Score (Decision Tree):", roc_auc_score(y_test, y_proba_dt))
-# Random forest
-rf_model = RandomForestClassifier(random_state=42, class_weight='balanced')
-
-# train the model
-rf_model.fit(X_train_scaled, y_train)
-
-#make predictions
-y_pred_rf = rf_model.predict(X_test_scaled)
-y_proba_rf = rf_model.predict_proba(X_test_scaled)[:, 1]
-
-# Performance evaluation
-print("Classification Report (Random Forest):\n", classification_report(y_test, y_pred_rf))
-print("Accuracy (Random Forest):", accuracy_score(y_test, y_pred_rf))
-print("ROC AUC Score (Random Forest):", roc_auc_score(y_test, y_proba_rf))
+# Forest Trees Performance evaluation
 - Overall Accuracy: 95% - The model correctly predicts churn for nearly 95% of customers. Accuracy alone can be misleading in imbalanced datasets. Deeper class-specific metrics will give more insights
 
 - ROC AUC Score: 0.93 — Indicates excellent overall classification ability. 
