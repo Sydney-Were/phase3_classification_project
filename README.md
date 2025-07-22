@@ -59,8 +59,30 @@ It is also shown to be the better model from the ROC curve. The random forest cu
 - Logistic Regression sacrifices precision for recall - Catches more churners (higher recall) but wrongly flags many loyal customers (low precision).Lower accuracy and overall discrimination (AUC).
 
 - Logistic Regression may trigger unnecessary actions - With 35% precision, 65% of predicted churners are actually loyal — leading to wasted retention costs.
+## Confusion matrix for logistic regression
+
+True Positives (TP): Customers who actually churned(76) and were correctly predicted to churn.
+
+True Negatives (TN): Customers who stayed(427) and were correctly predicted not to churn.
+
+False Positives (FP): Customers who were predicted to churn(139) but actually stayed 
+
+False Negatives (FN): Customers who actually churned(25) but were missed by the model
 
 - Random Forest offers a better balance - It still catches a large portion of churners (69% recall) but with very high confidence (96% precision). More reliable for making data-driven business decisions.
+## Confusion matrix for Random forest
+True Positives (TP): Customers who actually churned(70) and were correctly predicted to churn.
+
+True Negatives (TN): Customers who stayed(563) and were correctly predicted not to churn.
+
+False Positives (FP): Customers who were predicted to churn(3) but actually stayed — could lead to unnecessary retention efforts.
+
+False Negatives (FN): Customers who actually churned(31) but were missed by the model 
+
+- Maximize TP and TN, minimize FP and FN.
+
+- Reducing FN (missing real churners) is often a higher priority, even if it increases FP slightly.
+
 # Conclusions
 Basing the Random forest predictions, the most important features that can be used to predict customer churn are customer service calls, total day charge, total day minutes and the international plan. 
 
