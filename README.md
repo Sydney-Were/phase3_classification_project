@@ -27,7 +27,7 @@ Helps identify: Features positively/negatively correlated with churn, Multicolli
 Measures non-linear associations between features and churn. Higher MI = more predictive power. Works well with categorical features (like international plan).Helps rank features by importance for churn prediction. The goal is to Identify which features are useful for predicting churn. Exclude irrelevant or redundant features.
 
 # Modeling 
-To check on model performance i will do a logistic regression as the baseline mode
+To check on model performance I will do a logistic regression as the baseline mode
 
 # Logistic Regression Performance Evaluation
 - Overall Accuracy: 75% — Not bad, but doesn't say much due to imbalance.
@@ -36,7 +36,7 @@ To check on model performance i will do a logistic regression as the baseline mo
 
 - Churn Precision is low (0.35) — Meaning: of all the customers predicted to churn, only 35% actually do.
 
-- Churn Recall is decent (0.75) — You're catching 77% of actual churners — which is typically more important in churn prediction.
+- Churn Recall is decent (0.75) —75% are  actual churners — which is typically more important in churn prediction.
 
 # Forest Trees Performance evaluation
 - Overall Accuracy: 95% - The model correctly predicts churn for nearly 95% of customers. Accuracy alone can be misleading in imbalanced datasets. Deeper class-specific metrics will give more insights
